@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/speech"
+        android:icon="@drawable/ic_action_speech"
+        android:title="Text to Speech"/>
+    <item android:id="@+id/location"
+        android:icon="@drawable/ic_action_location"
+        android:title="By Location, City, or Zip"/>
+    <item android:id="@+id/s2t"
+        android:icon="@drawable/ic_action_location"
+        android:title="Speech to Text"/>
+
+
+</menu>

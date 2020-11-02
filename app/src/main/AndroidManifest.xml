@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hw8_weatherapp_v1">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".City" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity
+            android:name=".WeatherForecast"
+            android:label="Weather"
+            android:parentActivityName=".SpeechtoText">
+
+        </activity>
+        <activity
+            android:name=".SpeechtoText"
+            android:label="@string/title_s2t"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+        android:name=".Display_Act"
+        android:label="@string/title_activity_display"
+        android:parentActivityName=".SpeechtoText">
+
+        </activity>
+        <activity
+        android:name=".DisplayActivity"
+        android:label="@string/title_activity_display"
+        android:parentActivityName=".City">
+
+        </activity>
+        <activity
+            android:name=".TexttoSpeech"
+            android:label="@string/title_activity_t2s"
+            android:parentActivityName=".TexttoSpeech">
+
+        </activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

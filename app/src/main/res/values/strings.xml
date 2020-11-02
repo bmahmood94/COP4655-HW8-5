@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HW8-WeatherApp-v1</string>
+    <string name="WEATHER_API_URL_ZIP">https://api.openweathermap.org/data/2.5/weather?zip=</string>
+    <string name="WEATHER_API_URL_CITY">https://api.openweathermap.org/data/2.5/weather?q=</string>
+    <string name="WEATHER_API_URL_LAT">https://api.openweathermap.org/data/2.5/weather?lat=</string>
+    <string name="WEATHER_LON_SUFFIX">&amp;lon=</string>
+    <string name="WEATHER_API_KEY">&amp;"appid=e3fed2d026dba4e952cf2300145e65c1</string>
+    <string name="title_activity_display">Display Activity</string>
+    <string name="title_activity_t2s">Text to Speech</string>
+    <string name="title_s2t">Speech to Text</string>
+
+</resources>
