@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hw8_weatherapp_v1">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -13,40 +18,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".City" />
 
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Maps"
+            android:label="@string/title_activity_maps"></activity>
+        <activity android:name=".City" />
         <activity
             android:name=".WeatherForecast"
             android:label="Weather"
-            android:parentActivityName=".SpeechtoText">
-
-        </activity>
+            android:parentActivityName=".SpeechtoText" />
         <activity
             android:name=".SpeechtoText"
             android:label="@string/title_s2t"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity" />
         <activity
-        android:name=".Display_Act"
-        android:label="@string/title_activity_display"
-        android:parentActivityName=".SpeechtoText">
-
-        </activity>
+            android:name=".Display_Act"
+            android:label="@string/title_activity_display"
+            android:parentActivityName=".SpeechtoText" />
         <activity
-        android:name=".DisplayActivity"
-        android:label="@string/title_activity_display"
-        android:parentActivityName=".City">
-
-        </activity>
+            android:name=".DisplayActivity"
+            android:label="@string/title_activity_display"
+            android:parentActivityName=".City" />
         <activity
             android:name=".TexttoSpeech"
             android:label="@string/title_activity_t2s"
-            android:parentActivityName=".TexttoSpeech">
-
-        </activity>
+            android:parentActivityName=".TexttoSpeech" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

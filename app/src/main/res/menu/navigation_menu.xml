@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_action_location"
         android:title="By Location, City, or Zip"/>
     <item android:id="@+id/s2t"
-        android:icon="@drawable/ic_action_location"
+        android:icon="@drawable/ic_actiion_text"
         android:title="Speech to Text"/>
 
 

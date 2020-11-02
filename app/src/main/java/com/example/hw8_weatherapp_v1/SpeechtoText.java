@@ -178,7 +178,7 @@ public class SpeechtoText extends Activity {
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            JSONObject main = null;
+                            JSONObject main = null;//display results
                             try {
                                 main = response.getJSONObject("main");
                                 JSONObject coords = response.getJSONObject("coord");

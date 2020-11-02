@@ -24,7 +24,7 @@ public class TexttoSpeech extends Activity {
 
         t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
-            public void onInit(int status) {
+            public void onInit(int status) {//sets language to english from uk
                 if(status != TextToSpeech.ERROR) {
                     t1.setLanguage(Locale.UK);
                 }
@@ -36,7 +36,7 @@ public class TexttoSpeech extends Activity {
             public void onClick(View v) {
                 String toSpeak = ed1.getText().toString();
                 Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
-                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);//
             }
         });
     }
