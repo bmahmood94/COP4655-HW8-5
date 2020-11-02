@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.speech:
+                    case R.id.speech://for speech reco
                         TexttoSpeech();
                         break;
-                    case R.id.location:
+                    case R.id.location://for location zip city
                         getCity();
                         break;
-                    case R.id.s2t:
+                    case R.id.s2t://text to speech
                         SpeechtoText();
                         break;
                     default:
@@ -58,21 +58,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void getCity(){
-        //EditText editText1 = (EditText) findViewById(R.id.city_in);
-        //String text = editText1.getText().toString();
-        // EditText editText2 = (EditText) findViewById(R.id.edittext2);
-        //  int number = Integer.parseInt(editText2.getText().toString());
+    public void getCity(){///when button is location city zip button clicked go to the City Activity
         Intent intent = new Intent(this, City.class);
-        //  intent.putExtra(EXTRA_TEXT, text);
-        //intent.putExtra(EXTRA_NUMBER, number);
+
         startActivity(intent);
     }
-    public void TexttoSpeech(){
+    public void TexttoSpeech(){//calls text to speech when button clicked.
         Intent intent= new Intent(this,TexttoSpeech.class);
         startActivity(intent);
     }
-    public void SpeechtoText(){
+    public void SpeechtoText(){//creates Activity to send to Speech to text
         Intent intent= new Intent(this, SpeechtoText.class);
         startActivity(intent);
     }

@@ -36,10 +36,6 @@
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".City" />
         <activity
-            android:name=".WeatherForecast"
-            android:label="Weather"
-            android:parentActivityName=".SpeechtoText" />
-        <activity
             android:name=".SpeechtoText"
             android:label="@string/title_s2t"
             android:parentActivityName=".MainActivity" />
