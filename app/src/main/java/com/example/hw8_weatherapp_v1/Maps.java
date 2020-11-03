@@ -45,7 +45,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         TileProvider tileProvider = new UrlTileProvider(256, 256) {        @Override
         public URL getTileUrl(int x, int y, int zoom) {            /* Define the URL pattern for the tile images */
-            String s = String.format("https://tile.openweathermap.org/map/temp_new/%d/%d/%d.png?appid=AIzaSyCkdKUh92EC_Qud5IE_smK1PyrVAI2UwkM (Links to an external site.)", zoom, x, y);
+            String s = String.format("https://tile.openweathermap.org/map/temp_new/%d/%d/%d.png?appid=AIzaSyCkdKUh92EC_Qud5IE_smK1PyrVAI2UwkM", zoom, x, y);
             if (!checkTileExists(x, y, zoom)) {
                 return null;
             }            try {

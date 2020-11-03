@@ -7,10 +7,13 @@
     android:background="@color/colorPrimaryDark">
 
     <ImageView
+        android:src="@drawable/ic_action_speech"
+        android:id="@+id/header"
         android:layout_width="180dp"
         android:layout_height="130dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"/>
+
 
 
 </LinearLayout>

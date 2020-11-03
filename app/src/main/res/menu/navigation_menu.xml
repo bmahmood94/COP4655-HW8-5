@@ -9,6 +9,9 @@
     <item android:id="@+id/s2t"
         android:icon="@drawable/ic_actiion_text"
         android:title="Speech to Text"/>
+    <item android:id="@+id/forecast"
+        android:icon="@drawable/ic_actiion_text"
+        android:title="Speech to Text"/>
 
 
 </menu>

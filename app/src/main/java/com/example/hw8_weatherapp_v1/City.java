@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,6 +107,8 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
             getWeatherByCity(text);
         }
     }
+
+
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         System.out.println("onRequestPermissionsResult Callback Entered");
@@ -127,8 +128,6 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
 
 
     }
-
-
     @Override
     //onSuccess for Location Services
     public void onSuccess(Location location) {
@@ -167,8 +166,10 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
 
+
                             Intent intent = new Intent(context, DisplayActivity.class);
                             startActivity(intent);
+
 
 
 
@@ -290,55 +291,5 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
 
         queue.add(jsonObjectRequest);
     }
-    public void getWeatherbyspeech(String city){
-        Intent intent = getIntent();
-        String c_in = intent.getStringExtra(SpeechtoText.EXTRA_TEXT);
-        queue = Volley.newRequestQueue(this);
-        Log.d("DAMNIT",city);
-        String url = "https://api.openweathermap.org/data/2.5/weather?q="+c_in+"&appid=e3fed2d026dba4e952cf2300145e65c1";
-        System.out.println(url);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        JSONObject main;
-                        try {
-                            main = response.getJSONObject("main");
-                            JSONObject coords = response.getJSONObject("coord");
-                            data.setLat(coords.getString("lat"));
-                            data.setLon(coords.getString("lon"));
-                            data.setTemp(main.getString("temp"));
-                            data.setFeelsLike(main.getString("feels_like"));
-                            data.setCityName(response.getString("name"));
-                            data.setTempMax(main.getString("temp_max"));
-                            data.setTempMin(main.getString("temp_min"));
-                            //TODO : Bundle the weather object and send to next activity
-                            //Current implementation is just using static member
-
-                            Intent intent = new Intent(context, Display_Act.class);
-                            startActivity(intent);
-
-
-
-
-                        } catch (JSONException e) {
-                            System.out.println("JSON EXPLOSION");
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("ERROR WITH VOLLEY REQUEST");
-
-                    }
-                });
-
-        queue.add(jsonObjectRequest);
-
-    }
 }

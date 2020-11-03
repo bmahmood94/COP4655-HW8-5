@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.s2t://text to speech
                         SpeechtoText();
                         break;
+                    case R.id.forecast://text to speech
+
+                        break;
                     default:
                         return true;
                 }

@@ -102,19 +102,7 @@ public class SpeechtoText extends Activity {
             }
         }
         }
-
-
-
-
-
-
-
-    //implementing the OnSuccessListener in this activity since there is only a single callback.
-
-        //Bundle key
-
-
-        public static WeatherData getWeatherInstance() {
+         public static WeatherData getWeatherInstance() {
             return data;
         }
 
