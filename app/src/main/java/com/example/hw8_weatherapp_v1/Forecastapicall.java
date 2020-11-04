@@ -111,9 +111,9 @@ public class Forecastapicall extends AppCompatActivity implements OnSuccessListe
         getDT(lat,lon);
 
     }
-    public void getDT(String lat,String lon){
-        String url = getString(R.string.WEATHER_API_URL_LAT) + lat + getString(R.string.WEATHER_LON_SUFFIX) + lon
-                + getString(R.string.WEATHER_API_KEY);
+    public void getDT(String lat,String lon){//this functions purpose is to get dt
+        String url ="https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon//this is the location url
+                + "appid=e3fed2d026dba4e952cf2300145e65c1";
 
         System.out.println(url);
 
@@ -126,8 +126,12 @@ public class Forecastapicall extends AppCompatActivity implements OnSuccessListe
                         JSONObject main = null;
                         try {
                             main = response.getJSONObject("main");
-                            JSONObject dt;
+                            JSONObject dt = response.getJSONObject("dt");
+                            int DT= Integer.parseInt(String.valueOf(dt));
+
                             JSONObject coords = response.getJSONObject("coord");
+                            int lat =Integer.parseInt(coords.getString("lat"));
+                            int lon =Integer.parseInt(coords.getString("lon"));
                             data.setLat(coords.getString("lat"));
                             data.setLon(coords.getString("lon"));
 
@@ -140,13 +144,13 @@ public class Forecastapicall extends AppCompatActivity implements OnSuccessListe
 
 
 
-                        } catch (JSONException e) {
+                        } catch (JSONException e) {//cant access API
                             System.out.println("JSON EXPLOSION");
                         }
 
 
                     }
-                }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {//on error throw this out
 
                     @Override
                     public void onErrorResponse(VolleyError error) {

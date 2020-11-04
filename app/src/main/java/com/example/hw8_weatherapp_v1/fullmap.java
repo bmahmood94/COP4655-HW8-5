@@ -108,7 +108,8 @@ public class fullmap extends AppCompatActivity implements OnSuccessListener<Loca
     }
 
     @SuppressLint("MissingPermission")
-    private void getLocation(){
+    private void getLocation(){//gets the location of the user if its allowed by the internet
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation().addOnSuccessListener(this,this);
 
@@ -124,7 +125,7 @@ public class fullmap extends AppCompatActivity implements OnSuccessListener<Loca
         System.out.println("Longitude = " + lon);
         data.setLat(lat);
         data.setLon(lon);
-        MapLocation(lat,lon);
+        MapLocation(lat,lon);//call this function to conduct API calls
         // getWeatherByLocation(lat,lon);
 
     }
