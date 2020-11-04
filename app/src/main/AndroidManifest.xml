@@ -32,7 +32,18 @@
             android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".City" />
+        <activity
+            android:name=".DisplayMap"
+            android:label="Full Map View"
+            android:parentActivityName=".City" />
+        <activity
+            android:name=".fullmap"
+            android:label="Full Map View"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".City"
+            android:label="City"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SpeechtoText"
             android:label="@string/title_s2t"
@@ -45,6 +56,14 @@
             android:name=".DisplayActivity"
             android:label="@string/title_activity_display"
             android:parentActivityName=".City" />
+        <activity
+            android:name=".forecastlist"
+            android:label="@string/title_activity_display"
+            android:parentActivityName=".Forecastapicall" />
+        <activity
+            android:name=".Forecastapicall"
+            android:label="@string/title_activity_display"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TexttoSpeech"
             android:label="@string/title_activity_t2s"

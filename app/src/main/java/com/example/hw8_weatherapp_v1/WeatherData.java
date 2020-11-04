@@ -33,9 +33,8 @@ public class WeatherData {
         this.tempMin = t;
     }
 
-    public String setLat(String l){
+    public void setLat(String l){
         this.lat = l;
-        return l;
     }
 
     public void setLon(String l){

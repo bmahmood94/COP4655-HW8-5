@@ -23,6 +23,9 @@ import com.google.android.gms.maps.model.UrlTileProvider;
 import java.net.MalformedURLException;
 import java.net.URL;
     public class MapsFragment extends Fragment {
+        WeatherData w = new WeatherData();
+        String lat= w.getLat();
+        String lon = w.getLon();
 
         private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -68,6 +71,8 @@ import java.net.URL;
                         return true;
                     }
                 };
+
+
                 WeatherData w = City.getWeatherInstance();
                 Double lat = Double.parseDouble(w.getLat());
                 Double lon = Double.parseDouble(w.getLon());
@@ -77,7 +82,6 @@ import java.net.URL;
                 googleMap.moveCamera(CameraUpdateFactory.zoomTo(5));
                 TileOverlay tileOverlay = googleMap.addTileOverlay(new TileOverlayOptions()
                         .tileProvider(tileProvider));
-
 
             }
         };

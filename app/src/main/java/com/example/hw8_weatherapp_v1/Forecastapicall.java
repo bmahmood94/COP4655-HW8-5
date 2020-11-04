@@ -9,10 +9,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,9 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-//implementing the OnSuccessListener in this activity since there is only a single callback.
-public class City extends AppCompatActivity implements OnSuccessListener<Location> {
+public class Forecastapicall extends AppCompatActivity implements OnSuccessListener<Location> {
 
     //Bundle key
     public static final String DATA_TAG = "weather.data.go";
@@ -41,17 +36,12 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
     private FusedLocationProviderClient fusedLocationClient;
 
     //Declare UI elements
-    private Button goButton;
-    private ImageButton locButton;
-    private Button mapButton;
 
-    private TextView idTextView;
-    private EditText locEditText;
+    private ImageButton locButton;
+
     public static WeatherData data = new WeatherData();
 
     private Context context;
-
-
 
     //Volley request queue;
     private RequestQueue queue;
@@ -60,19 +50,13 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_city);
-
+        setContentView(R.layout.activity_list_input);
         //Remove that uggo TitleBar
         getSupportActionBar().hide();
-
         //Set context
         context = getApplicationContext();
         //Attach references to UI elements
-        goButton = findViewById(R.id.goButton);
-        mapButton = findViewById(R.id.open_map);
         locButton = findViewById(R.id.locButton);
-        idTextView = findViewById(R.id.textView2);
-        locEditText = findViewById(R.id.locEditText);
         //Instantiate the request queue
         queue = Volley.newRequestQueue(this);
     }
@@ -94,38 +78,6 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
             requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION },LOCATION_REQUEST_CODE);
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void onMapClick(View v){
-        System.out.println("Location Button Clicked");
-        //Ask for location permission
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED) {
-            getLocation();
-            System.out.println("PERMISSION ALREADY GRANTED FOR LOCATION, DOING ACTION");
-        }else {
-            //directly ask for the permission.
-            requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION },LOCATION_REQUEST_CODE);
-        }
-    }
-
-
-    public void onGoClick(View v){
-        System.out.println("Go Button Clicked");
-        String text = locEditText.getText().toString();
-        int zipcode;
-        try{
-            System.out.println("ZIPCODE DETECTED!");
-            zipcode = Integer.parseInt(text);
-            getWeatherByZip(zipcode);
-        }
-        catch(Exception e){
-            //Opps, try by city
-            System.out.println("CITY DETECTED!");
-            getWeatherByCity(text);
-        }
-    }
-
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
@@ -152,21 +104,19 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
         //Get Weather by Location
         String lat = String.valueOf(location.getLatitude());
         String lon = String.valueOf(location.getLongitude());
-        System.out.println("Latitude = " + lat);
+        System.out.println("Lattitude = " + lat);
         System.out.println("Longitude = " + lon);
         data.setLat(lat);
         data.setLon(lon);
-        getWeatherByLocation(lat,lon);
+        getDT(lat,lon);
 
     }
+    public void getDT(String lat,String lon){
+        String url = getString(R.string.WEATHER_API_URL_LAT) + lat + getString(R.string.WEATHER_LON_SUFFIX) + lon
+                + getString(R.string.WEATHER_API_KEY);
 
-    //onSuccess for Location Services
-
-
-    public void getWeatherByCity(String city){
-
-        String url = getString(R.string.WEATHER_API_URL_CITY) + city + getString(R.string.WEATHER_API_KEY);
         System.out.println(url);
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -176,17 +126,13 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
                         JSONObject main = null;
                         try {
                             main = response.getJSONObject("main");
+                            JSONObject dt;
                             JSONObject coords = response.getJSONObject("coord");
                             data.setLat(coords.getString("lat"));
                             data.setLon(coords.getString("lon"));
-                            data.setTemp(main.getString("temp"));
-                            data.setFeelsLike(main.getString("feels_like"));
-                            data.setCityName(response.getString("name"));
-                            data.setTempMax(main.getString("temp_max"));
-                            data.setTempMin(main.getString("temp_min"));
+
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
-
 
                             Intent intent = new Intent(context, DisplayActivity.class);
                             startActivity(intent);
@@ -194,7 +140,6 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
 
 
 
-
                         } catch (JSONException e) {
                             System.out.println("JSON EXPLOSION");
                         }
@@ -211,60 +156,8 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
                 });
 
         queue.add(jsonObjectRequest);
-
     }
-
-    public void getWeatherByZip(int zip){
-        String zipcode = String.valueOf(zip);
-        String url = getString(R.string.WEATHER_API_URL_ZIP) + zipcode + getString(R.string.WEATHER_API_KEY);
-        System.out.println(url);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        JSONObject main = null;
-                        try {
-                            main = response.getJSONObject("main");
-                            JSONObject coords = response.getJSONObject("coord");
-                            data.setLat(coords.getString("lat"));
-                            data.setLon(coords.getString("lon"));
-                            data.setTemp(main.getString("temp"));
-                            data.setFeelsLike(main.getString("feels_like"));
-                            data.setCityName(response.getString("name"));
-                            data.setTempMax(main.getString("temp_max"));
-                            data.setTempMin(main.getString("temp_min"));
-                            //TODO : Bundle the weather object and send to next activity
-                            //Current implementation is just using static member
-
-
-
-
-
-                        } catch (JSONException e) {
-                            System.out.println("JSON EXPLOSION");
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("ERROR WITH VOLLEY REQUEST");
-
-                    }
-                });
-
-        queue.add(jsonObjectRequest);
-
-
-
-
-    }
-
-    public void getWeatherByLocation(String lat,String lon){
+        public void getWeatherByLocation(String lat,String lon){
         String url = getString(R.string.WEATHER_API_URL_LAT) + lat + getString(R.string.WEATHER_LON_SUFFIX) + lon
                 + getString(R.string.WEATHER_API_KEY);
 
@@ -313,6 +206,5 @@ public class City extends AppCompatActivity implements OnSuccessListener<Locatio
 
         queue.add(jsonObjectRequest);
     }
-
 
 }

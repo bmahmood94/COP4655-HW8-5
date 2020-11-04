@@ -47,8 +47,14 @@ public class MainActivity extends AppCompatActivity {
                         SpeechtoText();
                         break;
                     case R.id.forecast://forecast the weather
+                        Forecast();
                         break;
-                        default:
+                    case R.id.map_loc://forecast the weather
+                        Open_map();
+                        break;
+
+
+                    default:
                         return true;
                 }
 
@@ -73,7 +79,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent= new Intent(this, SpeechtoText.class);
         startActivity(intent);
     }
-
+    public void Forecast(){//creates Activity to send to Speech to text
+        Intent intent= new Intent(this, Forecastapicall.class);
+        startActivity(intent);
+    }
+    public void Open_map(){//creates Activity to send to Speech to text
+        Intent intent= new Intent(this, fullmap.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
