@@ -11,7 +11,10 @@
         android:title="Speech to Text"/>
     <item android:id="@+id/forecast"
         android:icon="@drawable/ic_actiion_text"
-        android:title="Speech to Text"/>
+        android:title="Weather Forecast"/>
+    <item android:id="@+id/map_loc"
+        android:icon="@drawable/ic_actiion_text"
+        android:title="Map"/>
 
 
 </menu>

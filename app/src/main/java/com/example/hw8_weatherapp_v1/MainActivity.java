@@ -46,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.s2t://text to speech
                         SpeechtoText();
                         break;
-                    case R.id.forecast://text to speech
-
+                    case R.id.forecast://forecast the weather
                         break;
-                    default:
+                        default:
                         return true;
                 }
 
@@ -74,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent= new Intent(this, SpeechtoText.class);
         startActivity(intent);
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

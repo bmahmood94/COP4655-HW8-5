@@ -47,11 +47,18 @@
         android:name="com.example.hw8_weatherapp_v1.MapsFragment"
         android:layout_width="match_parent"
         android:layout_height="352dp" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="bottom|center"
         android:text="Belal Mahmood : Z23123449" />
+
+    <Button
+        android:id="@+id/open_map1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detailed Map" />
 
 </LinearLayout>

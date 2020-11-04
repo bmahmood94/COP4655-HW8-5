@@ -152,7 +152,8 @@ public class SpeechtoText extends Activity {
             System.out.println("Longitude = " + lon);
             data.setLat(lat);
             data.setLon(lon);
-            getWeatherByLocation(lat, lon);
+
+
 
         }
 
@@ -205,49 +206,6 @@ public class SpeechtoText extends Activity {
 
 
 
-        public void getWeatherByLocation(String lat, String lon) {
-            String url = getString(R.string.WEATHER_API_URL_LAT) + lat + getString(R.string.WEATHER_LON_SUFFIX) + lon
-                    + getString(R.string.WEATHER_API_KEY);
 
-            System.out.println(url);
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            JSONObject main = null;
-                            try {
-                                main = response.getJSONObject("main");
-                                data.setTemp(main.getString("temp"));
-                                data.setFeelsLike(main.getString("feels_like"));
-                                data.setCityName(response.getString("name"));
-                                data.setTempMax(main.getString("temp_max"));
-                                data.setTempMin(main.getString("temp_min"));
-                                //TODO : Bundle the weather object and send to next activity
-                                //Current implementation is just using static member
-
-                                Intent intent = new Intent(context, DisplayActivity.class);
-                                startActivity(intent);
-
-
-                            } catch (JSONException e) {
-                                System.out.println("JSON EXPLOSION");
-                            }
-
-
-                        }
-                    }, new Response.ErrorListener() {
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            System.out.println("ERROR WITH VOLLEY REQUEST");
-
-                        }
-                    });
-
-            queue.add(jsonObjectRequest);
-        }
 
     }
