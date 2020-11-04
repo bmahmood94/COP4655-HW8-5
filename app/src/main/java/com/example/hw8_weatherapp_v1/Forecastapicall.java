@@ -104,7 +104,7 @@ public class Forecastapicall extends AppCompatActivity implements OnSuccessListe
         //Get Weather by Location
         String lat = String.valueOf(location.getLatitude());
         String lon = String.valueOf(location.getLongitude());
-        System.out.println("Lattitude = " + lat);
+        System.out.println("Latitude = " + lat);
         System.out.println("Longitude = " + lon);
         data.setLat(lat);
         data.setLon(lon);
@@ -112,8 +112,8 @@ public class Forecastapicall extends AppCompatActivity implements OnSuccessListe
 
     }
     public void getDT(String lat,String lon){//this functions purpose is to get dt
-        String url ="https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon//this is the location url
-                + "appid=e3fed2d026dba4e952cf2300145e65c1";
+        String url ="pro.openweathermap.org/data/2.5/forecast/hourly?lat=" + lat + "&lon=" + lon+ "&appid=e3fed2d026dba4e952cf2300145e65c1";//api call to get history
+
 
         System.out.println(url);
 
